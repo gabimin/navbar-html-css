@@ -1,0 +1,210 @@
+/* Ajusta el modelo de caja para todo */
+html {
+    box-sizing: border-box;
+}
+
+/* Aplica el modelo de caja heredado */
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: Montserrat;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.hamburger {
+    font-size: 2rem;
+    color: palevioletred;
+}
+
+.close {
+    font-size: 1.5rem;
+    color: palevioletred;
+}
+
+header {
+    margin: 1rem;
+}
+
+/* Estilo general para el contenedor de navegación */
+nav {
+
+    padding: 1rem;
+    /* Posición absoluta para que ocupe todo el viewport */
+    position: absolute;
+    /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
+    top: 0;
+    /* Se posiciona en la parte superior */
+    left: 0;
+    /* Se alinea a la izquierda */
+    width: 50%;
+    /* Ocupa la mitad del ancho */
+    min-width: 15rem;
+    overflow: hidden;
+    /* Oculta el contenido desbordante */
+    display: flex;
+    /* Flexbox para distribuir contenido */
+    justify-content: space-between;
+    /* Espacio entre los elementos internos */
+    text-align: left;
+    /* pone el texto a la izquierda */
+    transform: translateY(-100%);
+    /* Por defecto, oculta la barra desplazándola hacia arriba */
+    transition: transform 0.25s ease;
+    /* Animación suave para mostrar/ocultar */
+}
+
+/* Muestra la barra de navegación cuando es objetivo del enlace (#) */
+nav:target {
+    transform: translateY(0);
+    /* La barra se desplaza hacia abajo */
+}
+
+/* Oculta el ícono de la hamburguesa cuando el menú está abierto 
+   Funciona sólo si hamburguer está después de nav en el html */
+nav:target~.hamburger {
+    display: none;
+}
+
+/* Lista principal de navegación */
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    /* Quita los marcadores de lista */
+    font-size: 1.5rem;
+    /* Tamaño de fuente grande */
+    display: flex;
+    /* Flexbox para el diseño de la lista */
+    flex-flow: column wrap;
+    /* Coloca los elementos en columna */
+    width: 100%;
+    /* Ocupa todo el ancho disponible dentro de navbar */
+}
+
+/* Estilo para los enlaces dentro de la barra de navegación */
+nav a {
+    color: palevioletred;
+    text-decoration: none;
+    /* Sin subrayado */
+    font-weight: 600;
+    /* semi-bold */
+    display: block;
+    /* Ocupa todo el espacio disponible */
+    padding: 1rem;
+    /* Espaciado interno */
+}
+
+/* Estilo al pasar el ratón sobre un enlace */
+nav a:hover {
+    background-color: rgb(253, 250, 211);
+    /* Fondo amarillo */
+    color: darkviolet;
+    /* Texto más oscuro */
+}
+
+.close {
+    color: lightgrey;
+}
+
+/* Estilo para el botón de cerrar al pasar el ratón */
+.close:hover {
+    color: darkgrey;
+    background-color: transparent;
+}
+
+/* Estilo para submenús */
+nav ul ul {
+    display: none;
+    /* Oculto por defecto */
+    font-size: 1.2rem;
+    /* Tamaño de fuente más pequeño */
+    border-left: 3px solid #ddd;
+    /* Borde izquierdo gris */
+    text-align: left;
+    /* Texto alineado a la izquierda */
+    width: 70%;
+    /* Ancho del submenú */
+    margin: 0 auto;
+    /* Centrado horizontal */
+}
+
+/* Estilo para los enlaces dentro del submenú */
+nav ul ul a {
+    color: violet;
+
+}
+
+/* Muestra el submenú al pasar el ratón sobre el elemento principal */
+nav ul li:hover>ul {
+    display: block;
+}
+
+/* =============================================================
+   Estilos para pantallas anchas (media query)
+   =============================================================
+*/
+@media (min-width: 750px) {
+    header {
+        margin: 1rem auto;
+        /* Centrado horizontal del encabezado */
+    }
+
+    nav {
+        width: 100%;
+        /* Ocupa todo el ancho */
+        padding: 0;
+        /* Sin espaciado interno */
+        position: static;
+        /* Posición estándar */
+        height: auto;
+        /* Altura automática */
+        transform: translateY(0);
+        /* Barra de navegación visible siempre */
+        overflow: visible;
+        /* Contenido no oculto */
+
+    }
+
+    .hamburger,
+    .close {
+        display: none;
+        /* Oculta los botones de abrir/cerrar */
+    }
+
+    nav ul {
+        flex-flow: row wrap;
+        /* Coloca los elementos en fila */
+        justify-content: center;
+        /* Centra los enlaces horizontalmente */
+        position: relative;
+        /* Posición relativa para submenús */
+        justify-content: left;
+    }
+
+    nav ul ul {
+        border-left: none;
+        /* Sin borde izquierdo */
+        /*width: 100%;*/
+        /* Submenú ocupa todo el ancho */
+        margin: auto;
+        /* milagrosamente hace que el submenú se presente bajo el ítem del menú principal*/
+        position: absolute;
+        /* Submenú sobrepuesto */
+        /* left: 0; /* Alineado a la izquierda */
+        z-index: 1000;
+        /* Aparece por encima de otros elementos */
+
+
+    }
+}
+
+nav a:hover {
+    display: inline-block;
+}
